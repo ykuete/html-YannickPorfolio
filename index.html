@@ -1,91 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yannick Kuete | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yannick Kuete | IT Professional</title>
+    <style>
+        :root {
+            --primary-color: #2b6777;
+            --secondary-color: #52ab98;
+            --accent-color: #c8d8e4;
+            --light-color: #f2f2f2;
+            --dark-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        nav {
+            background: var(--secondary-color);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 0;
+            background-color: var(--accent-color);
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .experience-title, .education-title {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-period, .education-period {
+            font-style: italic;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .youtube-channels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .channel-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .channel-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .channel-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .channel-card a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info ul {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .hero {
+                text-align: center;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>Yannick Kuete</h1>
-    <img src="Yan_3.png" alt="Portrait of Yannick Kuete" width="200" height="200" />
-  </header>
-
-  <main>
-    <section>
-      <h2>Summary</h2>
-      <p>Motivated and detail-oriented IT professional with CompTIA A+ Certification and hands-on
-         experience in IT support, diagnostics, and customer service engineering.</p>
+    <header>
+        <div class="container">
+            <h1>Yannick Kuete</h1>
+            <p>IT Professional | Customer Service Engineer | DevOps Enthusiast</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#additional">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <img src="Yan_3.png" alt="Yannick Kuete" class="profile-img">
+            <div class="hero-content">
+                <h1>Hello, I'm Yannick</h1>
+                <p>Motivated and detail-oriented IT professional with CompTIA A+ Certification and hands-on
+                experience in IT support, diagnostics, and customer service engineering. I'm passionate about leveraging technology to solve problems and enhance user experiences.</p>
+            </div>
+        </div>
     </section>
-
-    <section>
-      <h2>Education</h2>
-      <ul>
-        <li>Associate Degree in Computer Science — CCA, USA (2025)</li>
-        <li>Bachelor in Civil Engineering — UIT Bandjoun, Cameroon (2016)</li>
-        <li>Certifications: CompTIA A+, AWS Solutions Architect Associate</li>
-      </ul>
+    
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p>Motivated and detail-oriented IT professional with CompTIA A+ Certification and hands-on
+                experience in IT support, diagnostics, and customer service engineering. Seeking an
+                entry-level IT Support or Customer Service Engineer role where I can leverage my technical
+                skills in troubleshooting, data migration, and asset management to drive operational excellence
+                and enhance user satisfaction.</p>
+        </div>
     </section>
-
-    <section>
-      <h2>Work Experience</h2>
-      <h3>Customer Service Engineer - WWTS (2023–Present)</h3>
-      <ul>
-        <li>Repaired HP, Dell, and Mac devices in enterprise environments.</li>
-        <li>Resolved CrowdStrike outages using scripting.</li>
-        <li>Handled data migration and improved SLA adherence via ServiceNow.</li>
-      </ul>
-      <h3>Civil Engineer - FebDesign (2016–2021)</h3>
-      <ul>
-        <li>Managed construction projects and site execution.</li>
-      </ul>
+    
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="experience-item">
+                <h3 class="experience-title">Customer Service Engineer - WWTS</h3>
+                <p class="experience-period">2023 - Present</p>
+                <ul>
+                    <li>Diagnosed and repaired HP, Dell, and Mac assets for large-scale enterprise environments.</li>
+                    <li>Troubleshot and resolved CrowdStrike-related IT outages through scripting and code adjustments.</li>
+                    <li>Spearheaded data migration projects, minimizing downtime and ensuring smooth transitions.</li>
+                    <li>Configured workflows in ServiceNow, improving SLA adherence and operational efficiency.</li>
+                    <li>Partnered with cross-departmental teams to identify systemic issues and implement long-term solutions.</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <h3 class="experience-title">Civil Engineer - FebDesign</h3>
+                <p class="experience-period">2016 - 2021</p>
+                <ul>
+                    <li>Designed and documented construction projects, ensuring compliance with engineering standards.</li>
+                    <li>Oversaw on-site project execution, maintaining adherence to plans and specifications.</li>
+                </ul>
+            </div>
+        </div>
     </section>
-
-    <section>
-      <h2>Skills</h2>
-      <ul>
-        <li>OS: Windows, Mac OS, Linux</li>
-        <li>Support: Troubleshooting, Imaging, Diagnostics</li>
-        <li>Tools: ServiceNow, Git, SLA Management</li>
-        <li>Languages: Python, Bash, C++</li>
-        <li>DevOps: CI/CD, Ansible</li>
-      </ul>
+    
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education & Certifications</h2>
+            
+            <div class="education-item">
+                <h3 class="education-title">Academic Qualifications</h3>
+                <ul>
+                    <li><strong>Associate Degree in Computer Science</strong> - Community College of Aurora (CCA), USA | 2025</li>
+                    <li><strong>Bachelor Degree in Civil Engineering</strong> - UIT Bandjoun, Cameroon | 2016</li>
+                </ul>
+            </div>
+            
+            <div class="education-item">
+                <h3 class="education-title">Professional Certifications</h3>
+                <ul>
+                    <li>CompTIA A+</li>
+                    <li>AWS Certified Solutions Architect - Associate</li>
+                </ul>
+            </div>
+        </div>
     </section>
-
-    <section>
-      <h2>Projects & Channels</h2>
-      <ul>
-        <li>
-          <a href="https://www.youtube.com/channel/UCpXvqx2jBaUSpaGeAIAXxJg" target="_blank">
-            DevOps With Yannick (English)
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/@TechWithYMK" target="_blank">
-            Tech With YMK (French, AI tools)
-          </a>
-        </li>
-      </ul>
+    
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Operating Systems</h3>
+                    <ul class="skill-list">
+                        <li>Windows</li>
+                        <li>Mac OS</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Support Expertise</h3>
+                    <ul class="skill-list">
+                        <li>IT Support</li>
+                        <li>Troubleshooting</li>
+                        <li>Imaging</li>
+                        <li>Reimaging</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Systems & Processes</h3>
+                    <ul class="skill-list">
+                        <li>Data Migration</li>
+                        <li>Diagnostics</li>
+                        <li>Repairs</li>
+                        <li>Legal Hold</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>ServiceNow</li>
+                        <li>SLA Management</li>
+                        <li>Python</li>
+                        <li>Bash</li>
+                        <li>C++</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>DevOps & Automation</h3>
+                    <ul class="skill-list">
+                        <li>Ansible</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
-
-    <section>
-      <h2>References</h2>
-      <ul>
-        <li>Jamie Joy — Lumen’s Manager — (720) 987-6448</li>
-      </ul>
+    
+    <section id="additional">
+        <div class="container">
+            <h2 class="section-title">Additional Projects</h2>
+            
+            <p>In addition to my professional work, I'm passionate about sharing knowledge and creating content that helps others learn and grow in the tech field.</p>
+            
+            <div class="youtube-channels">
+                <div class="channel-card">
+                    <h3>DevOps With Yannick</h3>
+                    <p>My YouTube channel dedicated to DevOps practices, automation, and cloud technologies.</p>
+                    <a href="https://www.youtube.com/channel/UCpXvqx2jBaUSpaGeAIAXxJg" target="_blank">Visit Channel</a>
+                </div>
+                
+                <div class="channel-card">
+                    <h3>Tech With YMK (French)</h3>
+                    <p>A French-language channel focusing on AI technologies and their applications.</p>
+                    <a href="http://www.youtube.com/@TechWithYMK" target="_blank">Visit Channel</a>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">Additional Skills</h3>
+                <ul>
+                    <li>Strong interpersonal and communication skills for user support and training</li>
+                    <li>Committed to continuous learning and staying updated with evolving IT technologies</li>
+                </ul>
+            </div>
+        </div>
     </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p><a href="Contact.html">View Contact Details</a></p>
+    
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">Contact Information</h3>
+                    <ul>
+                        <li><strong>Address:</strong> 3243 S Pkr RD, Denver, CO 80014</li>
+                        <li><strong>Phone:</strong> (720) 694-2513</li>
+                        <li><strong>Email:</strong> yankuete@gmail.com</li>
+                    </ul>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">References</h3>
+                        <p><strong>Jamie Joy</strong><br>
+                        Lumen's Manager<br>
+                        Phone: (720) 987-6448</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">Send Me a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
-
-  <footer>
-    <p>© Yannick Kuete. All rights reserved.</p>
-  </footer>
-
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Yannick Kuete. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
